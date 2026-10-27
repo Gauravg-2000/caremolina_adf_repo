@@ -1,0 +1,10 @@
+{
+	"name": "LS_CareMolina_Keyvault",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://caremolina-keyvault.vault.azure.net/"
+		}
+	}
+}
