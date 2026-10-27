@@ -1,0 +1,10 @@
+{
+	"name": "LS_ADLSG2",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://caremolinaproject.dfs.core.windows.net/"
+		}
+	}
+}
