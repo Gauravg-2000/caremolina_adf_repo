@@ -1,0 +1,23 @@
+{
+	"name": "LS_Azure_DB",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"server": "caremolina-server.database.windows.net",
+			"database": "sql-db-caremolina",
+			"encrypt": "mandatory",
+			"trustServerCertificate": false,
+			"authenticationType": "SQL",
+			"userName": "gauravrg",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "LS_CareMolina_Keyvault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "metatdata-db-pass"
+			}
+		}
+	}
+}
