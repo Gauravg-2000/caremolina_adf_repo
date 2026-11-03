@@ -143,15 +143,15 @@
 				"typeProperties": {
 					"notebookPath": "/caremolina-repo/caremolina-adb-repo/landing_to_bronze",
 					"baseParameters": {
-						"source System": {
+						"source_system": {
 							"value": "@activity('Read_table_details').output.firstRow.source_system",
 							"type": "Expression"
 						},
-						"table Name": {
+						"table_name": {
 							"value": "@activity('Read_table_details').output.firstRow.bronze_table_name",
 							"type": "Expression"
 						},
-						"landing Timestamp": {
+						"landing_timestamp": {
 							"value": "@variables('timestamp')",
 							"type": "Expression"
 						}
@@ -184,11 +184,11 @@
 				"typeProperties": {
 					"notebookPath": "/caremolina-repo/caremolina-adb-repo/bronze_to_silver",
 					"baseParameters": {
-						"table Name": {
+						"table_name": {
 							"value": "@activity('Read_table_details').output.firstRow.silver_table_name",
 							"type": "Expression"
 						},
-						"landing Timestamp": {
+						"landing_timestamp": {
 							"value": "@variables('timestamp')",
 							"type": "Expression"
 						}
