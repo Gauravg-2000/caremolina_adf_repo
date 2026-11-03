@@ -122,7 +122,7 @@
 				]
 			},
 			{
-				"name": "Notebook1",
+				"name": "Landing to Bronze",
 				"type": "DatabricksNotebook",
 				"dependsOn": [
 					{
@@ -139,7 +139,65 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/caremolina-repo/caremolina-adb-repo/landing_to_bronze",
+					"baseParameters": {
+						"Source System": {
+							"value": "@activity('Read_table_details').output.firstRow.source_system",
+							"type": "Expression"
+						},
+						"Table Name": {
+							"value": "@activity('Read_table_details').output.firstRow.bronze_table_name",
+							"type": "Expression"
+						},
+						"Landing Timestamp": {
+							"value": "@variables('timestamp')",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_ADB_to_ADF",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Bronze_to_silver",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Landing to Bronze",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/caremolina-repo/caremolina-adb-repo/bronze_to_silver",
+					"baseParameters": {
+						"Table Name": {
+							"value": "@activity('Read_table_details').output.firstRow.silver_table_name",
+							"type": "Expression"
+						},
+						"Landing Timestamp": {
+							"value": "@variables('timestamp')",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_ADB_to_ADF",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"parameters": {
